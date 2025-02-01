@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Investment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #4caf50;
+        }
+        .bitcoin-price {
+            text-align: center;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Bitcoin Investment</h1>
+    <p class="bitcoin-price">Current Bitcoin Price: <span id="btc-price">$0.00</span></p>
+
+    <script>
+        async function getBitcoinPrice() {
+            const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json');
+            const data = await response.json();
+            const price = data.bpi.USD.rate;
+            document.getElementById('btc-price').innerText = `$${price}`;
+        }
+
+        // Fetch the Bitcoin price when the page loads
+        getBitcoinPrice();
+    </script>
+</body>
+</html>
